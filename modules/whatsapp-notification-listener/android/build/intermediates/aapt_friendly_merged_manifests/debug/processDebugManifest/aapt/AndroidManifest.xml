@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.infornics.whatsappnotificationlistener" >
+
+    <uses-sdk android:minSdkVersion="24" />
+
+    <application>
+        <service
+            android:name="com.infornics.whatsappnotificationlistener.WhatsappNotificationService"
+            android:exported="true"
+            android:label="WhatsApp Announcement Listener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

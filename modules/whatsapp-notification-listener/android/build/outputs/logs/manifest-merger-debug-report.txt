@@ -1,0 +1,35 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:1:1-14:12
+INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:1:1-14:12
+	package
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:2:3-55
+		INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:4:3-13:17
+service#com.infornics.whatsappnotificationlistener.WhatsappNotificationService
+ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:5:5-12:15
+	android:label
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:6:14-60
+	android:exported
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:8:14-37
+	android:permission
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:7:14-88
+	android:name
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:5:14-57
+intent-filter#action:name:android.service.notification.NotificationListenerService
+ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:9:9-11:25
+action#android.service.notification.NotificationListenerService
+ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:10:13-95
+	android:name
+		ADDED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml:10:21-92
+uses-sdk
+INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml
+INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/rachit/Documents/Code/Infornics/marketplace/whosthere/modules/whatsapp-notification-listener/android/src/main/AndroidManifest.xml

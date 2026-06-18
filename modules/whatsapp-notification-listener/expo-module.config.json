@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["WhatsappNotificationListenerModule"]
+  },
+  "android": {
+    "modules": ["com.infornics.whatsappnotificationlistener.WhatsappNotificationListenerModule"]
+  }
+}
