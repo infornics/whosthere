@@ -41,3 +41,8 @@ example
 # generated native folders
 /ios
 /android
+
+# Android/Gradle build artifacts in local modules
+**/build/
+**/.gradle/
+**/.cxx/
