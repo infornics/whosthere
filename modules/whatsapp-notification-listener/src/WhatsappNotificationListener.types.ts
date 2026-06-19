@@ -7,6 +7,14 @@ export type WhatsappNotificationEventPayload = {
   timestamp: number;
 };
 
+export type WhatsappVoice = {
+  id: string;
+  name: string;
+  language: string;
+  country: string;
+  locale: string;
+};
+
 export type WhatsappNotificationListenerEvents = {
   onNotificationReceived: (event: WhatsappNotificationEventPayload) => void;
 };

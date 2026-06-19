@@ -31,6 +31,25 @@ class WhatsappNotificationService : NotificationListenerService() {
       if (status == TextToSpeech.SUCCESS) {
         tts?.language = Locale.getDefault()
         isTtsInitialized = true
+
+        // Apply selected voice
+        try {
+          val prefs = getSharedPreferences("com.infornics.whosthere.preferences", Context.MODE_PRIVATE)
+          val selectedVoice = prefs.getString("selected_voice", "") ?: ""
+          if (selectedVoice.isNotEmpty()) {
+            val voices = tts?.voices
+            val voice = voices?.find { it.name == selectedVoice }
+            if (voice != null) {
+              tts?.voice = voice
+            } else {
+              // Fallback to setting language by parsing locale string
+              val locale = Locale.forLanguageTag(selectedVoice.replace("_", "-"))
+              tts?.language = locale
+            }
+          }
+        } catch (e: Exception) {
+          Log.e("WhatsappService", "Failed to apply voice in service: ${e.message}")
+        }
       } else {
         Log.e("WhatsappService", "Failed to initialize TTS engine")
       }

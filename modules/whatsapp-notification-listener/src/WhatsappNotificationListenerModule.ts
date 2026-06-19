@@ -1,6 +1,6 @@
 import { NativeModule, requireNativeModule } from 'expo';
 
-import { WhatsappNotificationListenerEvents } from './WhatsappNotificationListener.types';
+import { WhatsappNotificationListenerEvents, WhatsappVoice } from './WhatsappNotificationListener.types';
 
 declare class WhatsappNotificationListenerModule extends NativeModule<WhatsappNotificationListenerEvents> {
   isPermissionGranted(): boolean;
@@ -8,6 +8,9 @@ declare class WhatsappNotificationListenerModule extends NativeModule<WhatsappNo
   setAnnouncementEnabled(enabled: boolean): void;
   isAnnouncementEnabled(): boolean;
   speak(text: string): void;
+  getAvailableVoices(): Promise<WhatsappVoice[]>;
+  setSelectedVoice(voiceName: string): void;
+  getSelectedVoice(): string;
 }
 
 export default requireNativeModule<WhatsappNotificationListenerModule>('WhatsappNotificationListener');

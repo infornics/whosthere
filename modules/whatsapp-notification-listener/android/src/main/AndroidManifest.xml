@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.infornics.whatsappnotificationlistener">
   
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.TTS_SERVICE" />
+    </intent>
+  </queries>
+  
   <application>
     <service android:name=".WhatsappNotificationService"
              android:label="WhatsApp Announcement Listener"

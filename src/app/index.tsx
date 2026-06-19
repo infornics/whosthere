@@ -18,7 +18,11 @@ import {
   setAnnouncementEnabled,
   isAnnouncementEnabled,
   speak,
+  getAvailableVoices,
+  setSelectedVoice,
+  getSelectedVoice,
   WhatsappNotificationEventPayload,
+  WhatsappVoice,
 } from "../../modules/whatsapp-notification-listener";
 
 export default function Index() {
@@ -26,6 +30,9 @@ export default function Index() {
   const [announcementActive, setAnnouncementActive] = useState(true);
   const [testName, setTestName] = useState("");
   const [notifications, setNotifications] = useState<WhatsappNotificationEventPayload[]>([]);
+  const [voices, setVoices] = useState<WhatsappVoice[]>([]);
+  const [selectedVoiceId, setSelectedVoiceId] = useState<string>("");
+  const [showVoiceDropdown, setShowVoiceDropdown] = useState<boolean>(false);
 
   // Function to check permission and update state
   const checkPermissionState = () => {
@@ -47,10 +54,34 @@ export default function Index() {
     }
   };
 
+  // Function to load available voices
+  const loadVoices = async () => {
+    try {
+      const availableVoices = await getAvailableVoices();
+      const sortedVoices = [...availableVoices].sort((a, b) => a.name.localeCompare(b.name));
+      setVoices(sortedVoices);
+      
+      const savedVoiceId = getSelectedVoice();
+      setSelectedVoiceId(savedVoiceId);
+    } catch (e) {
+      console.warn("Failed to load voices:", e);
+    }
+  };
+
+  const handleVoiceSelect = (voiceId: string) => {
+    try {
+      setSelectedVoice(voiceId);
+      setSelectedVoiceId(voiceId);
+    } catch (e) {
+      console.warn("Failed to set selected voice:", e);
+    }
+  };
+
   useEffect(() => {
     // Check initial states
     checkPermissionState();
     loadToggleState();
+    loadVoices();
 
     // Listen for app coming back to foreground (e.g. after user grants permission in settings)
     const subscription = AppState.addEventListener("change", (nextAppState) => {
@@ -211,6 +242,53 @@ export default function Index() {
             >
               <Text className="text-violet-400 font-bold text-sm">Test</Text>
             </Pressable>
+          </View>
+
+          {/* Voice Selection Section */}
+          <View className="border-t border-slate-800/80 pt-4 mt-4">
+            <Text className="text-white font-bold text-sm mb-2">Announcement Voice</Text>
+            <Pressable 
+              onPress={() => setShowVoiceDropdown(!showVoiceDropdown)}
+              className="flex-row items-center justify-between bg-slate-950 border border-slate-800 px-4 py-3.5 rounded-2xl"
+            >
+              <Text className="text-white text-sm font-medium pr-4 flex-1" numberOfLines={1}>
+                {voices.find(v => v.id === selectedVoiceId)?.name || "Default Voice (System)"}
+              </Text>
+              <Text className="text-violet-400 text-xs font-bold">{showVoiceDropdown ? "▲" : "▼"}</Text>
+            </Pressable>
+
+            {showVoiceDropdown && (
+              <View className="bg-slate-950 border border-slate-800 rounded-2xl mt-2 max-h-[200px] overflow-hidden">
+                <ScrollView nestedScrollEnabled={true}>
+                  <Pressable
+                    onPress={() => {
+                      handleVoiceSelect("");
+                      setShowVoiceDropdown(false);
+                    }}
+                    className={`px-4 py-3 border-b border-slate-900/60 ${selectedVoiceId === "" ? "bg-violet-500/10" : ""}`}
+                  >
+                    <Text className={`text-sm ${selectedVoiceId === "" ? "text-violet-400 font-bold" : "text-slate-300"}`}>
+                      Default Voice (System)
+                    </Text>
+                  </Pressable>
+                  {voices.map((voice) => (
+                    <Pressable
+                      key={voice.id}
+                      onPress={() => {
+                        handleVoiceSelect(voice.id);
+                        setShowVoiceDropdown(false);
+                      }}
+                      className={`px-4 py-3 border-b border-slate-900/60 ${selectedVoiceId === voice.id ? "bg-violet-500/10" : ""}`}
+                    >
+                      <Text className={`text-sm ${selectedVoiceId === voice.id ? "text-violet-400 font-bold" : "text-slate-300"}`} numberOfLines={1}>
+                        {voice.name}
+                      </Text>
+                      <Text className="text-slate-500 text-[10px] mt-0.5">{voice.locale}</Text>
+                    </Pressable>
+                  ))}
+                </ScrollView>
+              </View>
+            )}
           </View>
         </View>
 

@@ -28,4 +28,16 @@ export function speak(text: string): void {
   WhatsappNotificationListenerModule.speak(text);
 }
 
+export async function getAvailableVoices(): Promise<any[]> {
+  return await WhatsappNotificationListenerModule.getAvailableVoices();
+}
+
+export function setSelectedVoice(voiceName: string): void {
+  WhatsappNotificationListenerModule.setSelectedVoice(voiceName);
+}
+
+export function getSelectedVoice(): string {
+  return WhatsappNotificationListenerModule.getSelectedVoice();
+}
+
 export * from './src/WhatsappNotificationListener.types';
